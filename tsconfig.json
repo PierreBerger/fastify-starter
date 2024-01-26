@@ -1,0 +1,13 @@
+{
+  "extends": "fastify-tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist",
+    "types": ["node"],
+    "moduleResolution": "Node",
+    "module": "CommonJS",
+    "target": "ESNext",
+    "noImplicitAny": true,
+  },
+}

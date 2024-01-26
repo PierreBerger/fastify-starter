@@ -1,0 +1,9 @@
+node_modules
+
+build
+coverage
+dist
+.env
+
+bun.lockb
+package-lock.json
