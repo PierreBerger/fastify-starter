@@ -10,10 +10,8 @@
     "start": "bun run build && node dist/src/server.js",
     "typecheck": "tsc -p --noEmit --pretty",
     "lint": "eslint .",
-    "prettier:check": "prettier --check .",
-    "prettier:write": "prettier --write .",
+    "format": "prettier -w .",
     "build": "tsc",
-    "watch": "tsc -w",
     "dev": "ts-node-dev --log-error --files ./src/server.ts"
   },
   "keywords": [],
