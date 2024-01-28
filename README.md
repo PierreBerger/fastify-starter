@@ -8,6 +8,8 @@ Fastify starter template with Typescript, Prisma and Vitest
 
 ### Getting started
 
+#### 1. Download starter and install dependencies
+
 Run the following command on your local environment:
 
 ```shell
@@ -16,7 +18,7 @@ cd my-project-name
 bun install
 ```
 
-Set the environment variables:
+#### 2. Set the environment variables:
 
 ```shell
 cp .env.example .env
@@ -24,13 +26,26 @@ cp .env.example .env
 # open .env and modify the environment variables (if needed)
 ```
 
-Then, you can run locally in development mode with live reload:
+#### 3. Create and seed the database
+
+Run the following command to create your SQLite database file. This also creates
+the `User` and `Post` tables that are defined in
+[`prisma/schema.prisma`](./prisma/schema.prisma):
+
+```shell
+bun prisma migrate dev --name init
+```
+
+#### 4. Start the Fastify server
+
+Launch your Fastify server in development mode with live reload:
 
 ```shell
 bun run dev
 ```
 
-Open http://localhost:3000 with your favorite browser to see your project.
+Navigate to [http://localhost:3000/](http://localhost:3000/) in your favorite
+browser to explore the API of your Fastify server.
 
 ### Commands
 
@@ -54,4 +69,5 @@ come with these default values:
 ```bash
 # Port number
 PORT=3000
+DATABASE_URL="./prisma/data.db"
 ```
