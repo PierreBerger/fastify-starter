@@ -78,5 +78,8 @@ jobs:
       - name: 🏄 Copy test env vars
         run: cp .env.example .env
 
+      - name: 💎 Setup prisma
+        run: bun prisma generate
+
       - name: ⚡ Run vitest
         run: npm run test -- --coverage
