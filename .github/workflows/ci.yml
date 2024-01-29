@@ -27,7 +27,7 @@ jobs:
         uses: oven-sh/setup-bun@v1
 
       - name: 📥 Download deps
-        uses: bun install
+        run: bun install
 
       - name: 🔬 Lint
         run: bun run lint
@@ -48,7 +48,7 @@ jobs:
         uses: oven-sh/setup-bun@v1
 
       - name: 📥 Download deps
-        uses: bun install
+        run: bun install
 
       - name: 🔎 Type check
         run: bun run typecheck --if-present
@@ -69,7 +69,7 @@ jobs:
         uses: oven-sh/setup-bun@v1
 
       - name: 📥 Download deps
-        uses: bun install
+        run: bun install
 
       - name: 🏄 Copy test env vars
         run: cp .env.example .env
