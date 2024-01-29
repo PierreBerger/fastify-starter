@@ -69,5 +69,5 @@ come with these default values:
 ```bash
 # Port number
 PORT=3000
-DATABASE_URL="./prisma/data.db"
+DATABASE_URL="./data.db"
 ```
