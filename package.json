@@ -8,7 +8,7 @@
     "test:ui": "vitest --ui",
     "coverage": "vitest --coverage",
     "start": "bun run build && node dist/src/server.js",
-    "typecheck": "tsc -p --noEmit --pretty",
+    "typecheck": "tsc --noEmit --pretty",
     "lint": "eslint .",
     "format": "prettier -w .",
     "build": "tsc",

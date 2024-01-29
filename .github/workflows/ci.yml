@@ -1,0 +1,85 @@
+name: 🚜 CI
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  lint:
+    name: ⬣ ESLint
+    runs-on: ubuntu-22.04
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: 🍞 Setup bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: 📥 Download deps
+        run: bun install
+
+      - name: 🔬 Lint
+        run: bun run lint
+
+  typecheck:
+    name: ʦ TypeScript
+    runs-on: ubuntu-22.04
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: 🍞 Setup bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: 📥 Download deps
+        run: bun install
+
+      - name: 🔎 Type check
+        run: bun run typecheck
+
+  vitest:
+    name: ⚡ Vitest
+    runs-on: ubuntu-22.04
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: 🍞 Setup bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: 📥 Download deps
+        run: bun install
+
+      - name: 🏄 Copy test env vars
+        run: cp .env.example .env
+
+      - name: 💎 Setup prisma
+        run: bun prisma generate
+
+      - name: ⚡ Run vitest
+        run: npm run test -- --coverage
