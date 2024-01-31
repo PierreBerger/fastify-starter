@@ -28,7 +28,9 @@
     "fastify": "^4.0.0",
     "fastify-cli": "^6.0.1",
     "fastify-plugin": "^4.0.0",
-    "pino": "^8.17.2"
+    "fastify-type-provider-zod": "^1.1.9",
+    "pino": "^8.17.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/bun": "latest",
