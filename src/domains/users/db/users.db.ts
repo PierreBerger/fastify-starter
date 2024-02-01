@@ -1,5 +1,5 @@
 import type { PrismaClient } from '@prisma/client'
-import type { CreateUserSchema } from '../schemas/user.schema'
+import type { CreateUserSchema } from '../schemas/users.schema'
 
 export const createUser = (prisma: PrismaClient, user: CreateUserSchema) =>
   prisma.user.create({
@@ -8,3 +8,5 @@ export const createUser = (prisma: PrismaClient, user: CreateUserSchema) =>
       name: user.name,
     },
   })
+
+export const findAllUsers = (prisma: PrismaClient) => prisma.user.findMany()

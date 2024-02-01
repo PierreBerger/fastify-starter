@@ -1,22 +1,26 @@
 import type { FastifyPluginAsync } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { findAllUsers } from '../../domains/users/db/findAllUsers.db'
 import {
   createUserResponseSchema,
   createUserSchema,
   findAllUsersSchema,
-} from '../../domains/users/schemas/user.schema'
-import { createUser } from '../../domains/users/db/createUser.db'
+} from '../schemas/users.schema'
+import {
+  createUserHandler,
+  findAllUsersHandler,
+} from '../handler/users.handler'
 
 const users: FastifyPluginAsync = async (fastify, _opts) => {
   fastify
     .withTypeProvider<ZodTypeProvider>()
-    .get('/', { schema: { response: { 200: findAllUsersSchema } } }, () => {
-      return findAllUsers(fastify.prisma)
-    })
+    .get(
+      '/users',
+      { schema: { response: { 200: findAllUsersSchema } } },
+      findAllUsersHandler,
+    )
 
   fastify.withTypeProvider<ZodTypeProvider>().post(
-    '/',
+    '/users',
     {
       schema: {
         body: createUserSchema,
@@ -25,10 +29,7 @@ const users: FastifyPluginAsync = async (fastify, _opts) => {
         },
       },
     },
-    async (request, reply) => {
-      const user = await createUser(fastify.prisma, request.body)
-      reply.code(201).send(user)
-    },
+    createUserHandler,
   )
 }
 

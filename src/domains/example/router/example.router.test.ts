@@ -1,5 +1,5 @@
 import { it, expect } from 'vitest'
-import fastify from '../helper'
+import fastify from '../../../../test/helper'
 
 it('example is loaded', async () => {
   const res = await fastify.inject({

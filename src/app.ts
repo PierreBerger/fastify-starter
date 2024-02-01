@@ -16,7 +16,10 @@ const app: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.setSerializerCompiler(serializerCompiler)
 
   fastify.register(AutoLoad, {
-    dir: path.join(__dirname, 'routes'),
+    dir: path.join(__dirname, 'domains'),
+    dirNameRoutePrefix: false,
+    matchFilter: path => path.endsWith('router.ts'),
+    ignoreFilter: path => path.endsWith('.test.ts'),
     options: opts,
   })
 }
