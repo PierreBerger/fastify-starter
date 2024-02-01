@@ -1,8 +1,6 @@
 import type { Prisma } from '@prisma/client'
-import { PrismaClient } from '@prisma/client'
 import { cleanupDb } from '../test/utils/db.util'
-
-const prisma = new PrismaClient()
+import prisma from '../src/libs/prisma'
 
 const users: Prisma.UserCreateInput[] = [
   {
